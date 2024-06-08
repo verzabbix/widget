@@ -19,6 +19,8 @@ class WMHostIterator extends CWidget {
 	promiseUpdate() {
 		this._body.innerHTML += '<div>promiseUpdate</div>';
 
+		console.log(this.getFieldsData());
+
 		return Promise.resolve();
 	}
 }
