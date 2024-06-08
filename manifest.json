@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2.0,
+	"id": "wmhostiterator",
+	"type": "widget",
+	"name": "Wellmade host iterator",
+	"namespace": "WMHostIterator",
+	"version": "1.0",
+	"author": "Wellmade",
+	"description": "Displays hosts and broadcasts each host in a row automatically.",
+	"widget": {
+		"in": {
+			"hostgroupids": {
+				"type": "_hostgroupids"
+			}
+		},
+		"out": [
+			{
+				"type": "_hostid"
+			},
+			{
+				"type": "_hostids"
+			}
+		]
+	}
+}
