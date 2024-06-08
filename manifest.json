@@ -8,6 +8,7 @@
 	"author": "Wellmade",
 	"description": "Displays hosts and broadcasts each host in a row automatically.",
 	"widget": {
+		"js_class": "WMHostIterator",
 		"in": {
 			"hostgroupids": {
 				"type": "_hostgroupids"
@@ -21,5 +22,8 @@
 				"type": "_hostids"
 			}
 		]
+	},
+	"assets": {
+		"js": ["class.widget.js"]
 	}
 }
