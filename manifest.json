@@ -24,6 +24,7 @@
 		]
 	},
 	"assets": {
-		"js": ["class.widget.js"]
+		"js": ["class.widget.js"],
+		"css": ["widget.css"]
 	}
 }
