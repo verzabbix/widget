@@ -1,5 +1,11 @@
 class WMHostIterator extends CWidget {
 
+	static SPEED_INTERVALS_MS = {
+		0: 10000,
+		1: 5000,
+		2: 2000
+	};
+
 	interval_handle = null;
 
 	onDeactivate() {
@@ -21,6 +27,8 @@ class WMHostIterator extends CWidget {
 			[CWidgetsData.DATA_TYPE_HOST_IDS]: [hosts[selected_index].hostid]
 		});
 
+		const interval_ms = WMHostIterator.SPEED_INTERVALS_MS[this.getFieldsData().speed];
+
 		this.interval_handle = setInterval(() => {
 			selected_index = selected_index + 1;
 
@@ -33,7 +41,7 @@ class WMHostIterator extends CWidget {
 				[CWidgetsData.DATA_TYPE_HOST_ID]: [hosts[selected_index].hostid],
 				[CWidgetsData.DATA_TYPE_HOST_IDS]: [hosts[selected_index].hostid]
 			});
-		}, 2000);
+		}, interval_ms);
 	}
 
 	displayHosts(hosts, selected_index) {
