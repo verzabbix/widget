@@ -16,6 +16,10 @@ class WMHostIterator extends CWidget {
 		let selected_index = 0;
 
 		this.displayHosts(hosts, selected_index);
+		this.broadcast({
+			[CWidgetsData.DATA_TYPE_HOST_ID]: [hosts[selected_index].hostid],
+			[CWidgetsData.DATA_TYPE_HOST_IDS]: [hosts[selected_index].hostid]
+		});
 
 		this.interval_handle = setInterval(() => {
 			selected_index = selected_index + 1;
@@ -25,6 +29,10 @@ class WMHostIterator extends CWidget {
 			}
 
 			this.displayHosts(hosts, selected_index);
+			this.broadcast({
+				[CWidgetsData.DATA_TYPE_HOST_ID]: [hosts[selected_index].hostid],
+				[CWidgetsData.DATA_TYPE_HOST_IDS]: [hosts[selected_index].hostid]
+			});
 		}, 2000);
 	}
 
@@ -52,12 +60,11 @@ class WMHostIterator extends CWidget {
 	}
 
 	promiseUpdate() {
-		const {hostgroupids, hostids} = this.getFieldsData();
+		const {hostgroupids} = this.getFieldsData();
 
 		return ApiCall('host.get', {
 			output: ['hostid', 'name'],
 			groupids: hostgroupids.length > 0 ? hostgroupids : undefined,
-			hostids: hostids.length > 0 ? hostids : undefined,
 			filter: {
 				status: 0
 			},

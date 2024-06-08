@@ -3,7 +3,7 @@ div.dashboard-widget-wmhostiterator {
 }
 div.dashboard-widget-wmhostiterator .dashboard-grid-widget-body ul {
 	height: 100%;
-
+}
 div.dashboard-widget-wmhostiterator .dashboard-grid-widget-body ul:before {
 	content: '';
 	position: absolute;
