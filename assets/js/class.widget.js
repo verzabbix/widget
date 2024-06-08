@@ -1,26 +1,18 @@
 class WMHostIterator extends CWidget {
 
-	onStart() {
-		this._body.innerHTML += '<div>onStart</div>';
-	}
-
-	onActivate() {
-		this._body.innerHTML += '<div>onActivate</div>';
-	}
-
-	onDeactivate() {
-		this._body.innerHTML += '<div>onDeactivate</div>';
-	}
-
-	onDestroy() {
-		this._body.innerHTML += '<div>onDestroy</div>';
-	}
-
 	promiseUpdate() {
-		this._body.innerHTML += '<div>promiseUpdate</div>';
+		const {hostgroupids} = this.getFieldsData();
 
-		console.log(this.getFieldsData());
-
-		return Promise.resolve();
+		return ApiCall('host.get', {
+			output: ['hostid', 'name'],
+			groupids: hostgroupids.length > 0 ? hostgroupids : undefined,
+			filter: {
+				status: 0
+			},
+			sortfield: 'name'
+		})
+			.then(response => {
+				console.log(response.result);
+			});
 	}
 }
