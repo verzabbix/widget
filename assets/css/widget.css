@@ -1,6 +1,9 @@
+div.dashboard-widget-wmhostiterator {
+	overflow: hidden;
+}
 div.dashboard-widget-wmhostiterator .dashboard-grid-widget-body ul {
 	height: 100%;
-}
+
 div.dashboard-widget-wmhostiterator .dashboard-grid-widget-body ul:before {
 	content: '';
 	position: absolute;
@@ -13,8 +16,19 @@ div.dashboard-widget-wmhostiterator .dashboard-grid-widget-body ul:before {
 div.dashboard-widget-wmhostiterator .dashboard-grid-widget-body li {
 	height: 20%;
 	position: relative;
-	top: 0;
+    top: -20%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	animation-name: wmhostiterator_slideup;
+	animation-duration: 500ms;
+}
+
+@keyframes wmhostiterator_slideup {
+	from {
+		top: 0;
+	}
+	to {
+		top: -20%;
+	}
 }

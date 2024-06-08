@@ -1,13 +1,50 @@
 class WMHostIterator extends CWidget {
 
-	displayHosts(hosts) {
+	interval_handle = null;
+
+	onDeactivate() {
+		this.stopIteratingHosts();
+	}
+
+	stopIteratingHosts() {
+		clearInterval(this.interval_handle);
+	}
+
+	startIteratingHosts(hosts) {
+		this.stopIteratingHosts();
+
+		let selected_index = 0;
+
+		this.displayHosts(hosts, selected_index);
+
+		this.interval_handle = setInterval(() => {
+			selected_index = selected_index + 1;
+
+			if (selected_index === hosts.length) {
+				selected_index = 0;
+			}
+
+			this.displayHosts(hosts, selected_index);
+		}, 2000);
+	}
+
+	displayHosts(hosts, selected_index) {
 		const list = document.createElement('ul');
 
-		hosts.forEach(host => {
+		for (let offset = -3; offset <= 2; offset++) {
+			let index = selected_index + offset;
+
+			index = index % hosts.length;
+
+			if (index < 0) {
+				index = index + hosts.length;
+			}
+
+			const host = hosts[index];
 			const item = document.createElement('li');
 			item.textContent = host.name;
 			list.appendChild(item);
-		});
+		}
 
 		this.clearContents();
 
@@ -29,7 +66,7 @@ class WMHostIterator extends CWidget {
 			.then(response => {
 				const hosts = response.result;
 
-				this.displayHosts(hosts);
+				this.startIteratingHosts(hosts);
 			});
 	}
 
